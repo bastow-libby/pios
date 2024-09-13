@@ -1,13 +1,15 @@
-
+#include "delay.h"
 unsigned long get_timer_count(){
         unsigned long *timer_count_register = 0x3f003004;
         return *timer_count_register;
 }
 
+
 char glbl[128];
 
 void kernel_main() {
-    unsigned long *time = get_timer_count();
+    unsigned long time = get_timer_count();
+    delay();
     
 
     //initialize variables, bring in external variables

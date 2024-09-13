@@ -16,7 +16,7 @@ OBJS = \
 	boot.o \
 	kernel_main.o \
 	list.o \
-	delay.o \	
+	delay.o \
 
 
 OBJ = $(patsubst %,$(ODIR)/%,$(OBJS))

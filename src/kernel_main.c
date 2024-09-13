@@ -9,7 +9,7 @@ char glbl[128];
 
 void kernel_main() {
     unsigned long time = get_timer_count();
-    delay();
+    milisec_delay();
     
 
     //initialize variables, bring in external variables

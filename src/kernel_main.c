@@ -10,16 +10,16 @@ unsigned long get_timer_count(){
 char glbl[128];
 
 void kernel_main() {
-    unsigned long time = get_timer_count();
-    milisec_delay();
-    struct list_element *c = {NULL, 0};
-    struct list_element *b = {&c, 0};
-    struct list_element *a = {&b, 0};
-    struct list_element *head = &a;
-    list_add(head, a);
-    list_add(head, b);
-    list_add(head, c);
-    list_remove(head, c);
+    //unsigned long time = get_timer_count();
+    //milisec_delay();
+    struct list_element c = {NULL, 0};
+    struct list_element b = {NULL, 0};
+    struct list_element a = {NULL, 0};
+    struct list_element *head = NULL;
+    list_add(&head, &a);
+    list_add(&head, &b);
+    list_add(&head, &c);
+    list_remove(head, &c);
 
     //initialize variables, bring in external variables
     char *bssstart, *bssend;

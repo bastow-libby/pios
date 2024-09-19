@@ -1,11 +1,6 @@
 #include "list.h"
 #include <stddef.h>
 
-struct list_element c = {NULL, 0};
-struct list_element b = {&c, 0};
-struct list_element a = {&b, 0};
-struct list_element *head = &a;
-
 
 //write the list_add() function that adds elements to a linked list
 void list_add(struct list_element **list_head, struct list_element *new_element){

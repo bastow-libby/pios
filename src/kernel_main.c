@@ -1,9 +1,18 @@
 #include "list.h"
-#include "delay.h"
 #include <stddef.h>
+#include "rprintf.h"
+#include "serial.h"
 unsigned long get_timer_count(){
         unsigned long *timer_count_register = 0x3f003004;
         return *timer_count_register;
+}
+int getEL() {
+    unsigned int el;
+    asm("mrs %0,CurrentEL"
+       : "=r"(el)
+       :
+       :);
+    return el>>2;
 }
 
 
@@ -12,15 +21,7 @@ char glbl[128];
 void kernel_main() {
     //unsigned long time = get_timer_count();
     //milisec_delay();
-    struct list_element c = {NULL, 0};
-    struct list_element b = {NULL, 0};
-    struct list_element a = {NULL, 0};
-    struct list_element *head = NULL;
-    list_add(&head, &a);
-    list_add(&head, &b);
-    list_add(&head, &c);
-    list_remove(head, &c);
-
+    esp_printf(putc, "Current Execution Level is %d\r\n", getEL());
     //initialize variables, bring in external variables
     char *bssstart, *bssend;
     extern char __bss_start, __bss_end;

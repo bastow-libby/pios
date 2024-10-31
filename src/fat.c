@@ -86,14 +86,14 @@ int fatRead(int cluster, int size) {
     esp_printf(putc, "Reached line %d\n", 84);
     // Calculate the starting sector for the given cluster
     // Cluster numbers usually start from 2 (according to internet)
-    int start_sector = ((cluster - 2) * cluster_size) + (bs->num_fat_tables * bs->num_sectors_per_fat) + bs->num_reserved_sectors + bs->num_hidden_sectors;
+    int start_sector = (bs->num_root_dir_entries * 32) + ((cluster - 2) * cluster_size) + (bs->num_fat_tables * bs->num_sectors_per_fat) + bs->num_reserved_sectors + bs->num_hidden_sectors;
 
     esp_printf(putc, "start = %d\n", start_sector);
     if (cluster < 2) {
     	esp_printf(putc, "Invalid cluster number: %d\n", cluster);
     	return -1; // Error: Invalid cluster
     }
-    char buf[cluster_size * sector_size];
+    char buf[cluster_size*sector_size];
     // Read data from the calculated starting sector into the buffer
     int result = sd_readblock(start_sector, buf, 1);
     

@@ -51,7 +51,8 @@ int getEL() {
 char glbl[128];
 
 void kernel_main() {
-    fatInit();
+    char arr[] ="TESTFILE.TXT";
+    fatOpen(arr);
 	
     // mapPages(0x0000, 0x0000);
     //Call load page table

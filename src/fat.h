@@ -78,7 +78,7 @@ struct file {
     struct root_directory_entry rde;
     uint32_t start_cluster;
 };
-int fatInit();
+struct root_directory_entry* fatInit();
 int fatOpen();
 int fatRead();
 
